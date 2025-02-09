@@ -7,7 +7,18 @@ import '../index.css'; // Importing the main CSS file with Tailwind
 const API_URL = "http://localhost:5000/movies";
 
 const MoviesPage = ({ movies, onEdit, onDelete }) => {
-    const { user } = useAuth(); // Access user data from context
+const { user } = useAuth(); // Access user data from context
+console.log("Current user in MoviesPage:", user); // Log user data
+if (!user) {
+    console.log("User data is null in MoviesPage."); // Log if user data is null
+} else {
+    console.log("User data is available in MoviesPage:", user); // Log if user data is available
+}
+
+
+
+console.log("Current user:", user); // Log user data
+
 
     const handleDelete = async (id) => {
         await axios.delete(`${API_URL}/${id}`);

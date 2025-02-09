@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/public/index.html
 # testing
 /coverage
 
@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+# additional common ignores
+.idea
+.vscode
+*.log
+*.tmp

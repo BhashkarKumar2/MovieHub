@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate from react
 import axios from 'axios'; // Import axios for API calls
 
 const Login = () => {
+    const { login } = useAuth(); // Access the login function from context
     const [error, setError] = useState(''); // State for error messages
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +18,12 @@ const Login = () => {
             const response = await axios.post('http://localhost:5000/login', { username, password, role });
             // Successful login logic
             localStorage.setItem('token', response.data.token); // Store token in local storage
+            login({ username, role }); // Set user data in context
+            
+
+            login({ username, role }); // Set user data in context
+
+
             if (role === 'admin') {
                 navigate('/movieform'); // Redirect admin to MovieForm page
             } else {

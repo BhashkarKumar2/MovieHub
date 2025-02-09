@@ -43,12 +43,13 @@ const App = () => {
 
     return (
         <AuthProvider> {/* Wrapping App with AuthProvider */}
+            {console.log("AuthProvider is wrapping the app")}
+            
             <Routes>
                 <Route path="/" element={<Login />} /> {/* Updated to render Login component */}
                 <Route path="/register" element={<Register />} /> {/* Adding the registration route */}
                 <Route path="/edit-movie/:id" element={<MovieForm onSubmit={addOrUpdateMovie} movies={movies} />} />
                 <Route path="/movieform" element={<MovieForm onSubmit={addOrUpdateMovie} />} /> {/* Added route for MovieForm */}
-
                 <Route path="/movies" element={<MoviesPage movies={movies} onEdit={handleEdit} onDelete={deleteMovie} />} />
                 <Route path="/login" element={<Login />} />
             </Routes>

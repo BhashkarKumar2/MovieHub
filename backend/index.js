@@ -82,7 +82,8 @@ app.post("/login", async (req, res) => {
     // Generate JWT
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.status(200).json({ message: "Login successful", token });
+    res.status(200).json({ message: "Login successful", token, username: user.username, role: user.role });
+
 });
 
 app.post("/movies", async (req, res) => {
