@@ -1,7 +1,10 @@
 /* MoviesPage.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #e1e9f0);
 }
 
 div {
@@ -13,6 +16,7 @@ div {
 h2 {
     color: #333;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 ul {
@@ -21,24 +25,33 @@ ul {
 }
 
 li {
-    background: #f4f4f4;
+    background: #ffffff;
     margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.05);
 }

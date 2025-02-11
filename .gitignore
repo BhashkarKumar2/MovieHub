@@ -26,3 +26,7 @@ yarn-error.log*
 .vscode
 *.log
 *.tmp
+
+# Ignore local environment files
+.env.local
+.env.*.local

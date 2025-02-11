@@ -37,11 +37,14 @@ const Login = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto p-4">
-            <h2 className="text-2xl font-bold text-center mb-4 text-blue-600">Login</h2>
+        <div className="max-w-md mx-auto p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
+
+            <h2 className="text-2xl font-bold text-center mb-4 text-white">Login</h2>
+
             {error && <p className="text-red-500">{error}</p>} 
 
-            <form onSubmit={handleLogin} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form onSubmit={handleLogin} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 transition duration-300 hover:shadow-lg">
+
                 <div className="mb-4">
                     <label className="block text-gray-700">Role</label>
                     <select
@@ -73,7 +76,8 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200">Login</button>
+                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Login</button>
+
             </form>
             <p className="text-center">
                 Don't have an account? <a href="/register" className="text-blue-500">Register here</a>
