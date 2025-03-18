@@ -3,23 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^1.7.9",
     "bcrypt": "^5.1.1",
-    "cra-template": "1.2.0",
-    "express-rate-limit": "^7.5.0",
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.1.5",
-    "react-scripts": "5.0.1"
+    "mongoose": "^8.9.7"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+ "scripts": {
+		"server": "nodemon backend/index.js",
+		"start": "node backend/index.js",
+		"build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+	},
   "eslintConfig": {
     "extends": [
       "react-app",
