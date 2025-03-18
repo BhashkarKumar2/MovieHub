@@ -16,7 +16,7 @@ const Register = () => {
         setError(''); // Reset error message
         try {
             // Send registration data to the backend, including the role
-            const response = await axios.post('http://localhost:5000/register', { username, password, role });
+            const response = await axios.post('https://movie-list-4z2r.onrender.com/register', { username, password, role });
             // If registration is successful, log the user in
             login(response.data);
             navigate('/login'); // Redirect to the login page after successful registration

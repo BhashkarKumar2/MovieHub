@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import axios from "axios";
 import MovieForm from "./components/MovieForm";
+
+
+import PaymentPage from "./components/PaymentPage"; // Importing PaymentPage component
 import MoviesPage from "./components/MoviesPage";
 import Login from "./components/Login"; // Importing the Login component
 import Register from "./components/Register"; // Importing the Register component
 import { AuthProvider } from "./context/AuthContext"; // Importing AuthProvider
+import WatchlistPage from "./components/WatchlistPage"; // Importing WatchlistPage component
 
-const API_URL = "http://localhost:5000/movies";
+const API_URL = "https://movie-list-4z2r.onrender.com/movies";
 
 const App = () => {
     const [movies, setMovies] = useState([]);
@@ -52,6 +56,10 @@ const App = () => {
                 <Route path="/movieform" element={<MovieForm onSubmit={addOrUpdateMovie} />} /> {/* Added route for MovieForm */}
                 <Route path="/movies" element={<MoviesPage movies={movies} onEdit={handleEdit} onDelete={deleteMovie} />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/payment" element={<PaymentPage />} /> {/* Added route for PaymentPage */}
+               
+
+                <Route path="/watchlist" element={<WatchlistPage />} /> {/* Added route for WatchlistPage */}
             </Routes>
         </AuthProvider>
     );

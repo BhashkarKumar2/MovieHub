@@ -15,7 +15,7 @@ const Login = () => {
         e.preventDefault();
         setError(''); // Reset error message
         try {
-            const response = await axios.post('http://localhost:5000/login', { username, password, role });
+            const response = await axios.post('https://movie-list-4z2r.onrender.com/login', { username, password, role });
             // Successful login logic
             localStorage.setItem('token', response.data.token); // Store token in local storage
             login({ username, role }); // Set user data in context
@@ -37,7 +37,7 @@ const Login = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
+        <div className="max-w-md mx-auto mt-20 p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg shadow-lg">
 
             <h2 className="text-2xl font-bold text-center mb-4 text-white">Login</h2>
 
