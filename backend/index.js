@@ -14,7 +14,16 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "https://movielist-lilac.vercel.app", // Allow only your frontend
+    methods: "GET,POST,PUT,DELETE", // Specify allowed methods
+    credentials: true, // If using cookies/auth
+  })
+);
+
 
 // Connect to MongoDB
 mongoose
