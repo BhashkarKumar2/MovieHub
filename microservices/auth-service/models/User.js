@@ -3,17 +3,18 @@ const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
-    password: { type: String, required: function() { return !this.isGoogleUser; } }, // Password not required for Google users
-    email: { type: String, sparse: true }, // Email for Google users
-    googleId: { type: String, sparse: true }, // Google user ID
-    picture: { type: String }, // Profile picture URL
+    password: { type: String, required: function() { return !this.isGoogleUser; } },
+    email: { type: String, sparse: true },
+    googleId: { type: String, sparse: true },
+    picture: { type: String },
     role: { type: String, default: 'customer' },
     isGoogleUser: { type: Boolean, default: false },
+    
     // Enhanced security fields
     refreshTokens: [{ 
         token: String, 
         createdAt: { type: Date, default: Date.now },
-        expiresAt: { type: Date, default: () => new Date(+new Date() + 7*24*60*60*1000) } // 7 days
+        expiresAt: { type: Date, default: () => new Date(+new Date() + 7*24*60*60*1000) }
     }],
     passwordResetToken: { type: String },
     passwordResetExpires: { type: Date },
@@ -25,14 +26,22 @@ const userSchema = new mongoose.Schema({
     isTwoFactorEnabled: { type: Boolean, default: false },
     lastLogin: { type: Date },
     ipAddress: { type: String },
-    userAgent: { type: String }
+    userAgent: { type: String },
+    
+    // Microservice specific fields
+    preferences: {
+        notifications: { type: Boolean, default: true },
+        emailUpdates: { type: Boolean, default: true },
+        theme: { type: String, default: 'light' }
+    }
 }, {
-    timestamps: true // Add createdAt and updatedAt timestamps
+    timestamps: true
 });
 
-// Create indexes for Google OAuth fields
+// Indexes
 userSchema.index({ email: 1 }, { sparse: true });
 userSchema.index({ googleId: 1 }, { sparse: true });
+userSchema.index({ username: 1 });
 
 // Virtual for account lock status
 userSchema.virtual('isLocked').get(function() {
@@ -60,7 +69,6 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
 
 // Method to handle failed login attempts
 userSchema.methods.incLoginAttempts = function() {
-    // If we have previous failed attempts and lock has expired, restart count
     if (this.lockUntil && this.lockUntil < Date.now()) {
         return this.updateOne({
             $unset: { lockUntil: 1 },
@@ -70,9 +78,8 @@ userSchema.methods.incLoginAttempts = function() {
     
     const updates = { $inc: { loginAttempts: 1 } };
     
-    // Lock account after 5 failed attempts for 2 hours
     if (this.loginAttempts + 1 >= 5 && !this.isLocked) {
-        updates.$set = { lockUntil: Date.now() + 2 * 60 * 60 * 1000 }; // 2 hours
+        updates.$set = { lockUntil: Date.now() + 2 * 60 * 60 * 1000 };
     }
     
     return this.updateOne(updates);
@@ -90,10 +97,9 @@ userSchema.methods.addRefreshToken = function(token) {
     this.refreshTokens.push({
         token,
         createdAt: new Date(),
-        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days
+        expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
     });
     
-    // Keep only last 5 refresh tokens
     if (this.refreshTokens.length > 5) {
         this.refreshTokens = this.refreshTokens.slice(-5);
     }

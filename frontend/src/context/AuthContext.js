@@ -21,12 +21,34 @@ export const AuthProvider = ({ children }) => {
         console.log("Logging out...");
         setUser(null);
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("refreshToken");
     };
 
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
+        const storedToken = localStorage.getItem("token");
+        
+        if (storedUser && storedToken) {
+            try {
+                // Verify token is still valid (basic check)
+                const payload = JSON.parse(atob(storedToken.split('.')[1]));
+                const isExpired = payload.exp * 1000 < Date.now();
+                
+                if (!isExpired) {
+                    setUser(JSON.parse(storedUser));
+                } else {
+                    // Token expired, clear storage
+                    localStorage.removeItem("user");
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("refreshToken");
+                }
+            } catch (error) {
+                console.error("Error parsing stored token:", error);
+                localStorage.removeItem("user");
+                localStorage.removeItem("token");
+                localStorage.removeItem("refreshToken");
+            }
         }
     }, []); // Correctly use useEffect here
 

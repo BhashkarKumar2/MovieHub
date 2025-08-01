@@ -1,0 +1,34 @@
+{
+  "name": "movie-list-microservices",
+  "version": "1.0.0",
+  "description": "Movie List Application - Microservices Architecture",
+  "scripts": {
+    "dev:all": "concurrently \"npm run dev:gateway\" \"npm run dev:auth\" \"npm run dev:movie\" \"npm run dev:review\" \"npm run dev:notification\"",
+    "dev:gateway": "cd microservices/api-gateway && npm run dev",
+    "dev:auth": "cd microservices/auth-service && npm run dev",
+    "dev:movie": "cd microservices/movie-service && npm run dev",
+    "dev:review": "cd microservices/review-service && npm run dev",
+    "dev:notification": "cd microservices/notification-service && npm run dev",
+    "start:all": "concurrently \"npm run start:gateway\" \"npm run start:auth\" \"npm run start:movie\" \"npm run start:review\" \"npm run start:notification\"",
+    "start:gateway": "cd microservices/api-gateway && npm start",
+    "start:auth": "cd microservices/auth-service && npm start",
+    "start:movie": "cd microservices/movie-service && npm start",
+    "start:review": "cd microservices/review-service && npm start",
+    "start:notification": "cd microservices/notification-service && npm start",
+    "install:all": "npm run install:gateway && npm run install:auth && npm run install:movie && npm run install:review && npm run install:notification",
+    "install:gateway": "cd microservices/api-gateway && npm install",
+    "install:auth": "cd microservices/auth-service && npm install",
+    "install:movie": "cd microservices/movie-service && npm install",
+    "install:review": "cd microservices/review-service && npm install",
+    "install:notification": "cd microservices/notification-service && npm install",
+    "test:all": "concurrently \"npm run test:gateway\" \"npm run test:auth\" \"npm run test:movie\" \"npm run test:review\" \"npm run test:notification\"",
+    "test:gateway": "cd microservices/api-gateway && npm test",
+    "test:auth": "cd microservices/auth-service && npm test",
+    "test:movie": "cd microservices/movie-service && npm test",
+    "test:review": "cd microservices/review-service && npm test",
+    "test:notification": "cd microservices/notification-service && npm test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

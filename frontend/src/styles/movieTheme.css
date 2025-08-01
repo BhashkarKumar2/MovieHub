@@ -1,0 +1,110 @@
+/* Movie-themed animations and effects */
+
+@keyframes movieReel {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes filmStrip {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(251, 191, 36, 0.6); }
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Particle animation for login/register pages */
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Cinema spotlight effect */
+@keyframes spotlight {
+  0%, 100% {
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  }
+  50% {
+    background: radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  }
+}
+
+/* Custom movie-themed utilities */
+.movie-glow {
+  box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+  animation: glow 3s ease-in-out infinite;
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cinema-text-glow {
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+}
+
+.movie-reel {
+  animation: movieReel 8s linear infinite;
+}
+
+.sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.fade-in-scale {
+  animation: fadeInScale 0.6s ease-out;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .glass-morphism {
+    backdrop-filter: blur(10px);
+    margin: 1rem;
+  }
+}
+
+/* Dark theme improvements */
+.dark-theme {
+  --primary-color: #fbbf24;
+  --secondary-color: #3b82f6;
+  --background-dark: #0f172a;
+  --surface-dark: #1e293b;
+  --text-light: #f8fafc;
+}
